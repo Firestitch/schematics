@@ -1,0 +1,33 @@
+{
+  "name": "@firestitch/schematics",
+  "version": "0.0.1",
+  "description": "A blank schematics",
+  "scripts": {
+    "package": "npm-run-all cleanup-dist build copy:package-json copy:collection-json",
+    "package:publish": "npm publish ./dist --access=public",
+    "test": "npm run build && jasmine src/**/*_spec.js",
+    "cleanup-dist": "rimraf dist",
+    "build": "tsc -p tsconfig.json",
+    "copy:package-json": "node scripts/copy-package-json.js --packageDir=./dist --packageJson=./package.json --src=./dist",
+    "copy:collection-json": "copyfiles -f \"./src/collection.json\" ./dist/src/"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "author": "",
+  "license": "MIT",
+  "schematics": "./src/collection.json",
+  "dependencies": {
+    "@angular-devkit/core": "^15.0.0",
+    "@angular-devkit/schematics": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/jasmine": "~4.3.0",
+    "@types/node": "^14.15.0",
+    "copyfiles": "^2.4.1",
+    "jasmine": "^4.0.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.7.2"
+  }
+}
